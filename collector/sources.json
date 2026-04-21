@@ -1,0 +1,46 @@
+[
+  {
+    "name": "cisa",
+    "label": "CISA Advisories",
+    "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+  },
+  {
+    "name": "bleepingcomputer",
+    "label": "BleepingComputer",
+    "url": "https://www.bleepingcomputer.com/feed/"
+  },
+  {
+    "name": "krebsonsecurity",
+    "label": "KrebsOnSecurity",
+    "url": "https://krebsonsecurity.com/feed/"
+  },
+  {
+    "name": "theregister-security",
+    "label": "The Register Security",
+    "url": "https://www.theregister.com/security/headlines.atom"
+  },
+  {
+  "name": "thehackernews",
+  "label": "The Hacker News",
+  "url": "https://feeds.feedburner.com/TheHackersNews"
+  },
+  {
+  "name": "arstechnica",
+  "label": "Ars Technica",
+  "url": "https://feeds.arstechnica.com/arstechnica/index"
+  },
+  {
+  "name": "cert-fr",
+  "label": "CERT-FR",
+  "url": "https://www.cert.ssi.gouv.fr/feed/"
+  },
+  {
+  "name": "therecord",
+  "label": "The Record",
+  "url": "https://therecord.media/feed/"
+  },{
+  "name": "zdnet-fr",
+  "label": "ZDNet France",
+  "url": "https://www.zdnet.fr/feeds/rss/actualites/"
+  }
+]
