@@ -814,6 +814,17 @@
         "score": 5
     },
     {
+        "source_name": "arstechnica",
+        "source_label": "Ars Technica",
+        "feed_title": "Ars Technica - All content",
+        "title": "Mozilla: Anthropic's Mythos found 271 zero-day vulnerabilities in Firefox 150",
+        "url": "https://arstechnica.com/ai/2026/04/mozilla-anthropics-mythos-found-271-zero-day-vulnerabilities-in-firefox-150/",
+        "published": "Tue, 21 Apr 2026 21:40:41 +0000",
+        "summary": "CTO says new AI model is \"every bit as capable\" as world's best security researchers.",
+        "category": "vulnerability",
+        "score": 5
+    },
+    {
         "source_name": "cert-fr",
         "source_label": "CERT-FR",
         "feed_title": "CERT-FR",
@@ -2225,7 +2236,29 @@
         "source_name": "arstechnica",
         "source_label": "Ars Technica",
         "feed_title": "Ars Technica - All content",
-        "title": "Silo S3 teaser turns back the clock to a greener past",
+        "title": "Pentagon wants $54B for drones, more than most nations’ military budgets",
+        "url": "https://arstechnica.com/ai/2026/04/pentagon-wants-54b-for-drones-more-than-most-nations-military-budgets/",
+        "published": "Tue, 21 Apr 2026 21:57:54 +0000",
+        "summary": "The proposed Pentagon drone investment rivals Ukraine’s entire military budget.",
+        "category": "general",
+        "score": 1
+    },
+    {
+        "source_name": "arstechnica",
+        "source_label": "Ars Technica",
+        "feed_title": "Ars Technica - All content",
+        "title": "Supreme Court arguments make it clear that FCC fines are \"nonbinding\"",
+        "url": "https://arstechnica.com/tech-policy/2026/04/supreme-court-arguments-make-it-clear-that-fcc-fines-are-nonbinding/",
+        "published": "Tue, 21 Apr 2026 21:28:27 +0000",
+        "summary": "FCC tells Supreme Court its fines are nonbinding unless a jury upholds penalty.",
+        "category": "general",
+        "score": 1
+    },
+    {
+        "source_name": "arstechnica",
+        "source_label": "Ars Technica",
+        "feed_title": "Ars Technica - All content",
+        "title": "Silo S3 teaser hints at the wasteland's origins",
         "url": "https://arstechnica.com/culture/2026/04/silo-s3-teaser-turns-back-the-clock-to-a-greener-past/",
         "published": "Tue, 21 Apr 2026 20:53:06 +0000",
         "summary": "\"Before we can know how it will all end, we need to understand how it all began.\"",
@@ -2405,39 +2438,6 @@
         "url": "https://arstechnica.com/apple/2026/04/john-ternus-will-replace-tim-cook-as-apple-ceo/",
         "published": "Mon, 20 Apr 2026 21:05:35 +0000",
         "summary": "Cook will be executive chairman but will no longer run the company day to day.",
-        "category": "general",
-        "score": 1
-    },
-    {
-        "source_name": "arstechnica",
-        "source_label": "Ars Technica",
-        "feed_title": "Ars Technica - All content",
-        "title": "Absurd study suggests eating fruits and vegetables leads to cancer",
-        "url": "https://arstechnica.com/health/2026/04/absurdly-bad-study-spurs-headlines-linking-healthy-diet-to-lung-cancer/",
-        "published": "Mon, 20 Apr 2026 20:53:04 +0000",
-        "summary": "Experts point out a series of flaws, including small size and no control group.",
-        "category": "general",
-        "score": 1
-    },
-    {
-        "source_name": "arstechnica",
-        "source_label": "Ars Technica",
-        "feed_title": "Ars Technica - All content",
-        "title": "US opens refund portal to start paying back Trump's illegal tariffs",
-        "url": "https://arstechnica.com/tech-policy/2026/04/us-opens-refund-portal-to-start-paying-back-trumps-illegal-tariffs/",
-        "published": "Mon, 20 Apr 2026 18:53:21 +0000",
-        "summary": "Importers can now request refunds, two months after Trump's Supreme Court loss.",
-        "category": "general",
-        "score": 1
-    },
-    {
-        "source_name": "arstechnica",
-        "source_label": "Ars Technica",
-        "feed_title": "Ars Technica - All content",
-        "title": "Here's how F1 is tweaking its hybrid systems to try to save the show",
-        "url": "https://arstechnica.com/cars/2026/04/f1-new-hybrid-rules-will-come-into-effect-at-the-miami-grand-prix-in-may/",
-        "published": "Mon, 20 Apr 2026 18:15:50 +0000",
-        "summary": "Energy management and speed differentials are the problems of the day.",
         "category": "general",
         "score": 1
     },

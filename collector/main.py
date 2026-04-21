@@ -4,6 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 SOURCES_FILE = BASE_DIR / "sources.json" #Fichier de configuration des sources
+OUTPUT_DIR = BASE_DIR.parent / "ressources" #Dossier de stockage des fichiers JSON
 
 
 def load_sources(path: Path) -> list[dict]: #Chargement des sources depuis un fichier JSON
@@ -28,9 +29,9 @@ def fetch_feed(source: dict) -> list[dict]: #Création de la fonction récupéra
 
     return articles
 
-def save_to_json(data: list[dict], filename: str) -> None:
-    path = Path("data") / filename #Création du path pour les datas
-    path.parent.mkdir(parents=True, exist_ok=True) #Création du dossier data s'il n'existe pas
+def save_to_json(data: list[dict], filename: str = "all_sources.json") -> None:
+    path = OUTPUT_DIR / filename #Création du path pour les datas dans le dossier ressources
+    path.parent.mkdir(parents=True, exist_ok=True) #Création du dossier ressources s'il n'existe pas
 
     with open(path, "w", encoding="utf-8") as f: #Ouverture du fichier pour écrire dedans
         json.dump(data, f, indent=4, ensure_ascii=False) #Ecriture des données dans le fichier
