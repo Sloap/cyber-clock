@@ -110,7 +110,7 @@ def main() -> None: #Point d'entrée du script de résumé IA
 
     print(f"Nombre total d'articles chargés : {len(articles)}")
 
-    top_articles = select_top_articles(articles, limit=10) #Sélection des 5 articles les plus importants
+    top_articles = select_top_articles(articles, limit=2) #Sélection des 5 articles les plus importants
     print(f"Nombre d'articles sélectionnés pour résumé IA : {len(top_articles)}")
 
     summarized_articles = summarize_articles(top_articles) #Ajout des résumés IA
