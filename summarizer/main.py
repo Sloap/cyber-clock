@@ -113,10 +113,26 @@ def main() -> None: #Point d'entrée du script de résumé IA
 
     print(f"Nombre total d'articles chargés : {len(articles)}")
 
-    top_articles = select_top_articles(articles, limit=2) #Sélection des 5 articles les plus importants
-    print(f"Nombre d'articles sélectionnés pour résumé IA : {len(top_articles)}")
+    vulnerability_articles = [
+        article for article in articles
+        if article["source_name"] in ["cisa", "cert-fr"]
+    ][:2]
 
-    summarized_articles = summarize_articles(top_articles) #Ajout des résumés IA
+    for article in vulnerability_articles:
+        article["section"] = "Nouvelles vulnérabilités"
+
+    general_articles = [
+        article for article in articles
+        if article["source_name"] not in ["cisa", "cert-fr"]
+    ][:5]
+
+    for article in general_articles:
+        article["section"] = "Articles importants"
+
+    selected_articles = vulnerability_articles + general_articles #Sélection des 5 articles les plus importants
+    print(f"Nombre d'articles sélectionnés pour résumé IA : {len(selected_articles)}")
+
+    summarized_articles = summarize_articles(selected_articles) #Ajout des résumés IA
 
     save_to_json(summarized_articles, OUTPUT_FILE) #Sauvegarde dans un JSON dédié
 

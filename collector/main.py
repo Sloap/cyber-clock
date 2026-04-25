@@ -236,7 +236,7 @@ def main() -> None: #Fonction main qui récupère les données de toutes les sou
     save_to_json(enriched_articles, "all_sources.json") #Sauvegarde globale
 
     print("-" * 60)
-    print("Top 10 articles les plus importants :")
+    print("Top articles les plus importants :")
 
     for article in top_articles: #Boucle pour afficher un aperçu des articles les plus importants
         print(f"[Score {article['score']}] [{article['category']}] {article['title']}")

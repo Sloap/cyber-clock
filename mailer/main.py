@@ -19,6 +19,15 @@ def load_articles(path: Path) -> list[dict]:
 
 
 def build_email_body(articles: list[dict]) -> str:
+    sections = {
+        "Nouvelles vulnérabilités": [],
+        "Articles importants": [],
+    }
+
+    for article in articles:
+        section = article.get("section", "Articles importants")
+        sections.setdefault(section, []).append(article)
+
     lines = []
 
     lines.append("Bonjour,")
@@ -26,14 +35,26 @@ def build_email_body(articles: list[dict]) -> str:
     lines.append("Voici ta veille cyber du jour :")
     lines.append("")
 
-    for index, article in enumerate(articles, start=1):
-        lines.append(f"{index}. {article.get('title', 'Sans titre')}")
-        lines.append(f"Source : {article.get('source_label', 'Unknown')}")
-        lines.append(f"Priorité : {article.get('ai_priority', 'unknown')}")
-        lines.append(f"Résumé : {article.get('ai_summary', '')}")
-        lines.append(f"Pourquoi c'est important : {article.get('ai_why_it_matters', '')}")
-        lines.append(f"Lien : {article.get('url', '')}")
+    for section_name, section_articles in sections.items():
+        if not section_articles:
+            continue
+
+        lines.append("=" * 60)
+        lines.append(section_name.upper())
+        lines.append("=" * 60)
         lines.append("")
+
+        for index, article in enumerate(section_articles, start=1):
+            lines.append(f"{index}. {article.get('title', 'Sans titre')}")
+            lines.append(f"Source : {article.get('source_label', 'Unknown')}")
+            lines.append(f"Catégorie : {article.get('category', 'general')}")
+            lines.append(f"Score : {article.get('score', 0)}")
+            lines.append(f"Priorité IA : {article.get('ai_priority', 'unknown')}")
+            lines.append("")
+            lines.append(f"Résumé : {article.get('ai_summary', '')}")
+            lines.append(f"Pourquoi c'est important : {article.get('ai_why_it_matters', '')}")
+            lines.append(f"Lien : {article.get('url', '')}")
+            lines.append("")
 
     return "\n".join(lines)
 
