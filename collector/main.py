@@ -138,12 +138,34 @@ def score_article(article: dict) -> int: #Fonction de scoring des articles
         score += 2
 
     #Score basé sur la source
-    if article["source_name"] in ["cisa", "cert-fr", "bleepingcomputer", "thehackernews", "therecord"]:
+    if article["source_name"] in ["bleepingcomputer", "thehackernews", "therecord"]:
         score += 2
     elif article["source_name"] in ["krebsonsecurity", "theregister-security", "zdnet-fr", "arstechnica"]:
         score += 1
 
     return score
+
+def select_vulnerability_articles(articles: list[dict], limit: int = 2) -> list[dict]: #Sélection dédiée aux nouvelles vulnérabilités
+    vulnerability_sources = ["cisa", "cert-fr"]
+
+    vulnerability_articles = [
+        article for article in articles
+        if article["source_name"] in vulnerability_sources
+    ]
+
+    vulnerability_articles.sort(key=lambda x: x["score"], reverse=True)
+
+    return vulnerability_articles[:limit]
+
+def select_general_articles(articles: list[dict], limit: int = 5) -> list[dict]: #Sélection du top général hors sources vulnérabilités institutionnelles
+    excluded_sources = ["cisa", "cert-fr"]
+
+    general_articles = [
+        article for article in articles
+        if article["source_name"] not in excluded_sources
+    ]
+
+    return select_top_articles(general_articles, limit=limit)
 
 def enrich_articles(articles: list[dict]) -> list[dict]: #Ajout du score et de la catégorie à chaque article
     for article in articles:
@@ -204,8 +226,12 @@ def main() -> None: #Fonction main qui récupère les données de toutes les sou
 
     #Tri par score décroissant
     enriched_articles.sort(key=lambda x: x["score"], reverse=True)
+    vulnerability_articles = select_vulnerability_articles(enriched_articles, limit=2)
+    general_articles = select_general_articles(enriched_articles, limit=5)
 
-    top_articles = select_top_articles(enriched_articles, limit=10) #Sélection finale plus variée
+    selected_articles = vulnerability_articles + general_articles
+
+    top_articles = selected_articles #Sélection finale plus variée
 
     save_to_json(enriched_articles, "all_sources.json") #Sauvegarde globale
 
