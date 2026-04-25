@@ -2445,6 +2445,17 @@
         "source_name": "zdnet-fr",
         "source_label": "ZDNet France",
         "feed_title": "ZDNet actualites",
+        "title": "Pourquoi les téléviseurs paraissent lumineux et éclatants en magasin, mais ternes chez vous, et comment y remédier",
+        "url": "https://www.zdnet.fr/pratique/pourquoi-les-televiseurs-paraissent-lumineux-et-eclatants-en-magasin-mais-ternes-chez-vous-et-comment-y-remedier-494244.htm#xtor=RSS-1",
+        "published": "Sat, 25 Apr 2026 04:04:20 GMT",
+        "summary": "Voici comment régler les couleurs de votre téléviseur pour qu'elles soient plus réalistes que ce qui est affiché en rayon.",
+        "category": "general",
+        "score": 1
+    },
+    {
+        "source_name": "zdnet-fr",
+        "source_label": "ZDNet France",
+        "feed_title": "ZDNet actualites",
         "title": "Lenovo vs Dell : le Lenovo vs Dell : ce que révèlent des dizaines de tests pour guider votre achatcomplet pour bien choisir votre portable en 2026",
         "url": "https://www.zdnet.fr/guide-achat/lenovo-vs-dell-le-lenovo-vs-dell-ce-que-revelent-des-dizaines-de-tests-pour-guider-votre-achatcomplet-pour-bien-choisir-votre-portable-en-2026-494229.htm#xtor=RSS-1",
         "published": "Sat, 25 Apr 2026 11:04:13 GMT",
@@ -2923,17 +2934,6 @@
         "published": "Tue, 21 Apr 2026 07:04:29 GMT",
         "summary": "Anthropic lance Claude Design. Propulsé par le nouveau modèle Claude Opus 4.7, cet outil ne se contente plus de générer du texte, mais orchestre désormais la création de prototypes, de présentations et de documents visuels alignés sur les normes de l'entreprise.",
         "category": "general",
-        "score": 1
-    },
-    {
-        "source_name": "zdnet-fr",
-        "source_label": "ZDNet France",
-        "feed_title": "ZDNet actualites",
-        "title": "Sécurité économique : Pourquoi la DGSI recommande aux entrerpises de bannir certaines solutions SaaS étrangères",
-        "url": "https://www.zdnet.fr/actualites/securite-economique-pourquoi-la-dgsi-recommande-aux-entrerpises-de-bannir-certaines-solutions-saas-etrangeres-494038.htm#xtor=RSS-1",
-        "published": "Tue, 21 Apr 2026 07:04:09 GMT",
-        "summary": "Dans une note, le renseignement intérieur détaille comment les logiciels étrangers, des IA aux messageries, peuvent devenir les vecteurs d'un pillage industriel systémique.",
-        "category": "regulation",
         "score": 1
     }
 ]
