@@ -1,6 +1,7 @@
 import feedparser
 import json
 from pathlib import Path
+from datetime import datetime, timezone, timedelta
 
 BASE_DIR = Path(__file__).resolve().parent
 SOURCES_FILE = BASE_DIR / "sources.json" #Fichier de configuration des sources
@@ -11,11 +12,21 @@ def load_sources(path: Path) -> list[dict]: #Chargement des sources depuis un fi
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+def is_recent(entry, hours: int = 48) -> bool:
+    parsed = entry.get("published_parsed")
+    if not parsed:
+        return True  # on garde si pas de date
+    pub_date = datetime(*parsed[:6], tzinfo=timezone.utc)
+    return datetime.now(timezone.utc) - pub_date <= timedelta(hours=hours)
+
 def fetch_feed(source: dict) -> list[dict]: #Création de la fonction récupération des données (adaptée multi-sources)
     feed = feedparser.parse(source["url"]) #Téléchargement du contenu du flux, parsing
     articles = []
 
     for entry in feed.entries: #Récupération des infos. Unknown en cas d'échec
+        if not is_recent(entry):
+            continue
+
         article = { #Dictionnaire pour tout stocker
             "source_name": source["name"],
             "source_label": source["label"],
@@ -23,6 +34,7 @@ def fetch_feed(source: dict) -> list[dict]: #Création de la fonction récupéra
             "title": entry.get("title", "Sans titre"),
             "url": entry.get("link", "Pas de lien"),
             "published": entry.get("published", "Pas de date"),
+            "published_parsed": list(entry.published_parsed[:6]) if entry.get("published_parsed") else None,
             "summary": entry.get("summary", ""), #Résumé brut fourni par certains flux
         }
         articles.append(article)
@@ -142,6 +154,16 @@ def score_article(article: dict) -> int: #Fonction de scoring des articles
         score += 2
     elif article["source_name"] in ["krebsonsecurity", "theregister-security", "zdnet-fr", "arstechnica"]:
         score += 1
+
+    #Bonus de fraîcheur selon l'âge de l'article
+    parsed = article.get("published_parsed")
+    if parsed:
+        pub_date = datetime(*parsed[:6], tzinfo=timezone.utc)
+        age = datetime.now(timezone.utc) - pub_date
+        if age <= timedelta(hours=6):
+            score += 3
+        elif age <= timedelta(hours=24):
+            score += 1
 
     return score
 
