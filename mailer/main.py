@@ -139,8 +139,8 @@ def build_email_html(articles: list[dict]) -> str:
         sections_data.setdefault(section, []).append(article)
 
     body_sections = (
-        build_section_html("Nouvelles vulnérabilités", sections_data["Nouvelles vulnérabilités"])
-        + build_section_html("Articles importants", sections_data["Articles importants"])
+        build_section_html("Articles importants", sections_data["Articles importants"])
+        + build_section_html("Nouvelles vulnérabilités", sections_data["Nouvelles vulnérabilités"])
     )
 
     return f"""<!DOCTYPE html>
