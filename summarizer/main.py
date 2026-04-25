@@ -92,6 +92,7 @@ def summarize_articles(articles: list[dict]) -> list[dict]: #Ajout des champs IA
         llm_result = llm_call(article) #Simulation de la réponse IA
 
         enriched_article = article.copy() #Copie de l'article pour ne pas modifier l'original
+        enriched_article["ai_title_fr"] = llm_result.get("ai_title_fr", enriched_article["title"])
         enriched_article["ai_summary"] = llm_result["ai_summary"]
         enriched_article["ai_priority"] = llm_result["ai_priority"]
         enriched_article["ai_why_it_matters"] = llm_result["ai_why_it_matters"]
