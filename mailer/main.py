@@ -14,9 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent
 INPUT_FILE = BASE_DIR.parent / "ressources" / "ai_summaries.json"
 
 PRIORITY_COLORS = {
-    "high":   "#f85149",
-    "medium": "#e3b341",
-    "low":    "#3fb950",
+    "high":   "#cf222e",
+    "medium": "#9a6700",
+    "low":    "#1a7f37",
 }
 PRIORITY_LABELS = {
     "high":   "Haute",
@@ -53,49 +53,49 @@ def build_article_card(article: dict, index: int) -> str:
     category_label = CATEGORY_LABELS.get(category, category.capitalize())
 
     return f"""
-<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:14px;">
+<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:12px;">
   <tr>
-    <td style="background:#161b22;border-radius:8px;border-left:3px solid {color};padding:18px 22px;">
+    <td style="background:#ffffff;border-radius:6px;border:1px solid #d0d7de;border-left:3px solid {color};padding:16px 20px;">
 
-      <div style="font-size:14px;font-weight:700;color:#e6edf3;line-height:1.4;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:700;color:#24292f;line-height:1.4;margin-bottom:10px;">
         {index}. {title}
       </div>
 
       <table cellpadding="0" cellspacing="4" style="margin-bottom:12px;">
         <tr>
           <td>
-            <span style="display:inline-block;background:#21262d;color:#8b949e;font-size:11px;padding:2px 8px;border-radius:4px;">
+            <span style="display:inline-block;background:#f6f8fa;color:#57606a;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #d0d7de;">
               {source}
             </span>
           </td>
           <td style="padding-left:6px;">
-            <span style="display:inline-block;background:#21262d;color:#8b949e;font-size:11px;padding:2px 8px;border-radius:4px;">
+            <span style="display:inline-block;background:#f6f8fa;color:#57606a;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #d0d7de;">
               {category_label}
             </span>
           </td>
           <td style="padding-left:6px;">
-            <span style="display:inline-block;background:#0d1117;color:{color};font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid {color};">
+            <span style="display:inline-block;background:#ffffff;color:{color};font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid {color};">
               Priorité : {priority_label}
             </span>
           </td>
         </tr>
       </table>
 
-      <div style="font-size:13px;color:#c9d1d9;line-height:1.6;margin-bottom:12px;">
+      <div style="font-size:13px;color:#24292f;line-height:1.6;margin-bottom:12px;">
         {summary}
       </div>
 
-      <div style="background:#0d1117;border-radius:6px;padding:10px 14px;margin-bottom:14px;">
-        <div style="font-size:10px;font-weight:700;color:#58a6ff;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+      <div style="background:#f6f8fa;border-radius:6px;border:1px solid #d0d7de;padding:10px 14px;margin-bottom:14px;">
+        <div style="font-size:10px;font-weight:700;color:#0969da;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
           Pourquoi c'est important
         </div>
-        <div style="font-size:12px;color:#8b949e;line-height:1.5;">
+        <div style="font-size:12px;color:#57606a;line-height:1.5;">
           {why}
         </div>
       </div>
 
       <a href="{url}"
-         style="display:inline-block;background:#1f6feb;color:#ffffff;font-size:12px;font-weight:600;
+         style="display:inline-block;background:#0969da;color:#ffffff;font-size:12px;font-weight:600;
                 padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.3px;">
         Lire l'article &rarr;
       </a>
@@ -114,10 +114,10 @@ def build_section_html(name: str, articles: list[dict]) -> str:
 <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
   <tr>
     <td style="padding-bottom:14px;">
-      <div style="font-size:11px;font-weight:700;color:#8b949e;text-transform:uppercase;letter-spacing:1.2px;">
+      <div style="font-size:11px;font-weight:700;color:#57606a;text-transform:uppercase;letter-spacing:1.2px;">
         {name}
       </div>
-      <div style="height:1px;background:#21262d;margin-top:8px;"></div>
+      <div style="height:1px;background:#d0d7de;margin-top:8px;"></div>
     </td>
   </tr>
   <tr>
@@ -150,21 +150,21 @@ def build_email_html(articles: list[dict]) -> str:
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Veille Cyber</title>
 </head>
-<body style="margin:0;padding:0;background:#0d1117;font-family:'Segoe UI',Arial,sans-serif;">
+<body style="margin:0;padding:0;background:#f6f8fa;font-family:'Segoe UI',Arial,sans-serif;">
 
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#0d1117;padding:32px 16px;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8fa;padding:32px 16px;">
   <tr>
     <td align="center">
       <table width="600" cellpadding="0" cellspacing="0">
 
         <!-- En-tête -->
         <tr>
-          <td style="background:#161b22;border-top:3px solid #58a6ff;
-                     border-radius:8px 8px 0 0;padding:22px 30px 18px;">
-            <div style="font-size:18px;font-weight:700;color:#58a6ff;letter-spacing:2px;">
-              CYBER WATCH
+          <td style="background:#ffffff;border-top:3px solid #0969da;border:1px solid #d0d7de;
+                     border-top:3px solid #0969da;border-radius:6px 6px 0 0;padding:22px 30px 18px;">
+            <div style="font-size:18px;font-weight:700;color:#0969da;letter-spacing:1px;">
+              Cyber Watch
             </div>
-            <div style="font-size:12px;color:#8b949e;margin-top:5px;">
+            <div style="font-size:12px;color:#57606a;margin-top:5px;">
               Veille quotidienne &mdash; {today}
             </div>
           </td>
@@ -172,16 +172,16 @@ def build_email_html(articles: list[dict]) -> str:
 
         <!-- Contenu -->
         <tr>
-          <td style="background:#0d1117;padding:26px 30px;">
+          <td style="background:#f6f8fa;padding:24px 30px;border-left:1px solid #d0d7de;border-right:1px solid #d0d7de;">
             {body_sections}
           </td>
         </tr>
 
         <!-- Pied de page -->
         <tr>
-          <td style="background:#161b22;border-radius:0 0 8px 8px;
-                     border-top:1px solid #21262d;padding:14px 30px;">
-            <div style="font-size:11px;color:#484f58;text-align:center;">
+          <td style="background:#ffffff;border-radius:0 0 6px 6px;border:1px solid #d0d7de;
+                     border-top:1px solid #d0d7de;padding:14px 30px;">
+            <div style="font-size:11px;color:#8c959f;text-align:center;">
               Généré automatiquement par Cyber Watch &middot; {today}
             </div>
           </td>
