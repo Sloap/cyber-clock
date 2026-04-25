@@ -124,7 +124,19 @@ def select_general_articles(articles: list[dict], limit: int = 5) -> list[dict]:
 
     general_articles.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    return general_articles[:limit]
+    #Max 2 articles par source pour diversifier les résultats
+    selected = []
+    source_counts = {}
+    for article in general_articles:
+        source = article.get("source_name")
+        if source_counts.get(source, 0) >= 2:
+            continue
+        selected.append(article)
+        source_counts[source] = source_counts.get(source, 0) + 1
+        if len(selected) >= limit:
+            break
+
+    return selected
     
 
 
