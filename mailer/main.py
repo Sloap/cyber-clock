@@ -40,7 +40,7 @@ def load_articles(path: Path) -> list[dict]:
 
 
 def build_article_card(article: dict, index: int) -> str:
-    title    = article.get("title", "Sans titre")
+    title    = article.get("ai_title_fr") or article.get("title", "Sans titre")
     source   = article.get("source_label", "Unknown")
     category = article.get("category", "general")
     priority = article.get("ai_priority", "medium").lower()
