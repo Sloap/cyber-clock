@@ -159,11 +159,20 @@ def select_vulnerability_articles(articles: list[dict], limit: int = 2) -> list[
 
 def select_general_articles(articles: list[dict], limit: int = 5) -> list[dict]: #Sélection du top général hors sources vulnérabilités institutionnelles
     excluded_sources = ["cisa", "cert-fr"]
+    excluded_keywords = ["cisa", "kev", "known exploited vulnerabilit"]
 
-    general_articles = [
-        article for article in articles
-        if article["source_name"] not in excluded_sources
-    ]
+    general_articles = []
+
+    for article in articles:
+        title = article["title"].lower()
+
+        if article["source_name"] in excluded_sources:
+            continue
+
+        if any(keyword in title for keyword in excluded_keywords):
+            continue
+
+        general_articles.append(article)
 
     return select_top_articles(general_articles, limit=limit)
 
