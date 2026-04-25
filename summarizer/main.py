@@ -105,6 +105,26 @@ def select_top_articles(articles: list[dict], limit: int = 5) -> list[dict]: #S�
     sorted_articles = sorted(articles, key=lambda x: x.get("score", 0), reverse=True)
     return sorted_articles[:limit]
 
+def select_general_articles(articles: list[dict], limit: int = 5) -> list[dict]: #Sélection du top général hors sources institutionnelles et hors articles KEV/CISA répétitifs
+    excluded_sources = ["cisa", "cert-fr"]
+    excluded_keywords = ["cisa", "kev", "known exploited", "exploited flaws"]
+
+    general_articles = []
+
+    for article in articles:
+        title = article.get("title", "").lower()
+
+        if article.get("source_name") in excluded_sources:
+            continue
+
+        if any(keyword in title for keyword in excluded_keywords):
+            continue
+
+        general_articles.append(article)
+
+    general_articles.sort(key=lambda x: x.get("score", 0), reverse=True)
+
+    return general_articles[:limit]
     
 
 
@@ -121,10 +141,7 @@ def main() -> None: #Point d'entrée du script de résumé IA
     for article in vulnerability_articles:
         article["section"] = "Nouvelles vulnérabilités"
 
-    general_articles = [
-        article for article in articles
-        if article["source_name"] not in ["cisa", "cert-fr"]
-    ][:5]
+    general_articles = select_general_articles(articles, limit=5)
 
     for article in general_articles:
         article["section"] = "Articles importants"
