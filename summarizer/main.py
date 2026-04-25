@@ -1,6 +1,9 @@
 import json
 import re
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
+
 from openai import OpenAI
 #from google import genai
 from prompts import SYSTEM_PROMPT
