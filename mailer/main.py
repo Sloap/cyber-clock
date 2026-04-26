@@ -74,12 +74,12 @@ def build_article_card(article: dict, index: int) -> str:
       <table cellpadding="0" cellspacing="4" style="margin-bottom:12px;">
         <tr>
           <td>
-            <span style="display:inline-block;background:#ddf4ff;color:#0969da;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #54aeff;">
+            <span style="display:inline-block;background:#f6f8fa;color:#57606a;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #d0d7de;">
               {source}
             </span>
           </td>
           <td style="padding-left:6px;">
-            <span style="display:inline-block;background:#ddf4ff;color:#0969da;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #54aeff;">
+            <span style="display:inline-block;background:#f6f8fa;color:#57606a;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #d0d7de;">
               {category_label}
             </span>
           </td>
