@@ -47,10 +47,20 @@ def build_article_card(article: dict, index: int) -> str:
     summary  = article.get("ai_summary", "")
     why      = article.get("ai_why_it_matters", "")
     url      = article.get("url", "#")
+    published = article.get("published", "")
 
-    color         = PRIORITY_COLORS.get(priority, "#8b949e")
+    color          = PRIORITY_COLORS.get(priority, "#cf222e")
     priority_label = PRIORITY_LABELS.get(priority, priority.capitalize())
     category_label = CATEGORY_LABELS.get(category, category.capitalize())
+
+    date_badge = ""
+    if published and published != "Pas de date":
+        date_badge = f"""
+          <td style="padding-left:6px;">
+            <span style="display:inline-block;background:#ddf4ff;color:#0969da;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #54aeff;">
+              {published}
+            </span>
+          </td>"""
 
     return f"""
 <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:12px;">
@@ -77,7 +87,7 @@ def build_article_card(article: dict, index: int) -> str:
             <span style="display:inline-block;background:#ffffff;color:{color};font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid {color};">
               Priorité : {priority_label}
             </span>
-          </td>
+          </td>{date_badge}
         </tr>
       </table>
 
