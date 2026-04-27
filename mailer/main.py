@@ -19,9 +19,12 @@ MOIS_FR = [
 def format_date_fr(published: str) -> str:
     try:
         dt = parsedate_to_datetime(published)
-        return f"{dt.day} {MOIS_FR[dt.month]} {dt.year}"
     except Exception:
-        return ""
+        try:
+            dt = datetime.fromisoformat(published.replace("Z", "+00:00"))
+        except ValueError:
+            return ""
+    return f"{dt.day} {MOIS_FR[dt.month]} {dt.year}"
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_FILE = BASE_DIR.parent / "ressources" / "ai_summaries.json"
