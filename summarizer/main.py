@@ -49,6 +49,7 @@ Titre : {article.get('title', 'Sans titre')}
 Résumé brut : {clean_summary}
 
 Donne une réponse JSON en français avec :
+- ai_title_fr
 - ai_summary
 - ai_priority
 - ai_why_it_matters
