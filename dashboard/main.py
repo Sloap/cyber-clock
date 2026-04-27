@@ -14,9 +14,13 @@ MOIS_FR = ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct
 
 def format_date_fr(date_str: str) -> str:
     parsed = parsedate(date_str)
-    if not parsed:
-        return date_str
-    dt = datetime(*parsed[:6])
+    if parsed:
+        dt = datetime(*parsed[:6])
+    else:
+        try:
+            dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+        except ValueError:
+            return date_str
     return f"{dt.day} {MOIS_FR[dt.month - 1]} {dt.year}"
 
 @app.get("/")
