@@ -149,12 +149,12 @@ def main() -> None: #Point d'entrée du script de résumé IA
     vulnerability_articles = [
         article for article in articles
         if article["source_name"] in ["cisa", "cert-fr"]
-    ][:2]
+    ][:3]
 
     for article in vulnerability_articles:
         article["section"] = "Nouvelles vulnérabilités"
 
-    general_articles = select_general_articles(articles, limit=5)
+    general_articles = select_general_articles(articles, limit=7)
 
     for article in general_articles:
         article["section"] = "Articles importants"

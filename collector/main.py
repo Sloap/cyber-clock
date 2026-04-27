@@ -257,8 +257,8 @@ def main() -> None: #Fonction main qui récupère les données de toutes les sou
 
     #Tri par score décroissant
     enriched_articles.sort(key=lambda x: x["score"], reverse=True)
-    vulnerability_articles = select_vulnerability_articles(enriched_articles, limit=2)
-    general_articles = select_general_articles(enriched_articles, limit=5)
+    vulnerability_articles = select_vulnerability_articles(enriched_articles, limit=3)
+    general_articles = select_general_articles(enriched_articles, limit=7)
 
     selected_articles = vulnerability_articles + general_articles
 
