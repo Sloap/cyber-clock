@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Cyber Clock Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <h1>Veille Cybersécurité</h1>
 
     {% for article in articles %}
-    <div>
+    <div class="article priority-{{ article.ai_priority }}">
         <p>[{{ article.ai_priority | upper }}]
            <a href="{{ article.url }}">{{ article.ai_title_fr }}</a>
         </p>

@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    background: #f5f5f5;
+}
+
+h1 {
+    color: #1a1a1a;
+}
+
+.article {
+    background: white;
+    border-left: 5px solid #ccc;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+}
+
+.priority-high   { border-left-color: #cf222e; }
+.priority-medium { border-left-color: #9a6700; }
+.priority-low    { border-left-color: #1a7f37; }
