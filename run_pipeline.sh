@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/user/cyber-clock || exit 1
+cd /home/yoan/cyber-clock || exit 1
 
 source .venv/bin/activate
 
