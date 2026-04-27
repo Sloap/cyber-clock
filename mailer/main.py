@@ -4,11 +4,24 @@ import smtplib
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+MOIS_FR = [
+    "", "janvier", "février", "mars", "avril", "mai", "juin",
+    "juillet", "août", "septembre", "octobre", "novembre", "décembre",
+]
+
+def format_date_fr(published: str) -> str:
+    try:
+        dt = parsedate_to_datetime(published)
+        return f"{dt.day} {MOIS_FR[dt.month]} {dt.year}"
+    except Exception:
+        return ""
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_FILE = BASE_DIR.parent / "ressources" / "ai_summaries.json"
@@ -53,12 +66,13 @@ def build_article_card(article: dict, index: int) -> str:
     priority_label = PRIORITY_LABELS.get(priority, priority.capitalize())
     category_label = CATEGORY_LABELS.get(category, category.capitalize())
 
+    date_fr = format_date_fr(published)
     date_badge = ""
-    if published and published != "Pas de date":
+    if date_fr:
         date_badge = f"""
           <td style="padding-left:6px;">
             <span style="display:inline-block;background:#ddf4ff;color:#0969da;font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid #54aeff;">
-              {published}
+              {date_fr}
             </span>
           </td>"""
 
