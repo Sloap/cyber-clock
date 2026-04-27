@@ -10,6 +10,55 @@ h1 {
     color: #1a1a1a;
 }
 
+.stats {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.stat-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 70px;
+}
+
+.stat-item.high   { border-top: 3px solid #cf222e; }
+.stat-item.medium { border-top: 3px solid #9a6700; }
+.stat-item.low    { border-top: 3px solid #1a7f37; }
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.stat-label {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+.date-btn {
+    padding: 6px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+.date-btn.active,
+.date-btn:hover { background: #1a1a1a; color: white; border-color: #1a1a1a; }
+
 .filters {
     margin: 16px 0 24px;
     display: flex;
