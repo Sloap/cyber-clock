@@ -10,7 +10,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="dashboard/static"), name="static")
 templates = Jinja2Templates(directory="dashboard/templates")
 
-DB_FILE = Path("ressources/cyber.db")
+DB_FILE = Path(__file__).resolve().parent.parent / "ressources" / "cyber.db"
 MOIS_FR = ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"]
 
 def format_date_fr(date_str: str) -> str:
