@@ -8,18 +8,44 @@
 <body>
     <h1>Veille Cybersécurité</h1>
 
+    <div class="filters">
+        <button class="filter-btn active" onclick="filter('all')">Tous</button>
+        <button class="filter-btn high"   onclick="filter('high')">HIGH</button>
+        <button class="filter-btn medium" onclick="filter('medium')">MEDIUM</button>
+        <button class="filter-btn low"    onclick="filter('low')">LOW</button>
+    </div>
+
     {% for section, section_articles in articles | groupby("section") %}
-    <h2>{{ section }}</h2>
-    {% for article in section_articles %}
-    <div class="article priority-{{ article.ai_priority }}">
-        <span class="badge badge-{{ article.ai_priority }}">{{ article.ai_priority | upper }}</span>
-        <span class="meta">{{ article.source_label }} — {{ article.published_fr }}</span>
-        <p><a href="{{ article.url }}">{{ article.ai_title_fr }}</a></p>
-        <p>{{ article.ai_summary }}</p>
-        <p><em>{{ article.ai_why_it_matters }}</em></p>
+    <div class="section">
+        <h2>{{ section }}</h2>
+        {% for article in section_articles %}
+        <div class="article priority-{{ article.ai_priority }}">
+            <span class="badge badge-{{ article.ai_priority }}">{{ article.ai_priority | upper }}</span>
+            <span class="meta">{{ article.source_label }} — {{ article.published_fr }}</span>
+            <p><a href="{{ article.url }}">{{ article.ai_title_fr }}</a></p>
+            <p>{{ article.ai_summary }}</p>
+            <p><em>{{ article.ai_why_it_matters }}</em></p>
+        </div>
+        {% endfor %}
     </div>
     {% endfor %}
-    {% endfor %}
 
+    <script>
+        function filter(priority) {
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
+
+            document.querySelectorAll(".article").forEach(article => {
+                const show = priority === "all" || article.classList.contains("priority-" + priority);
+                article.style.display = show ? "block" : "none";
+            });
+
+            document.querySelectorAll(".section").forEach(section => {
+                const hasVisible = [...section.querySelectorAll(".article")]
+                    .some(a => a.style.display !== "none");
+                section.style.display = hasVisible ? "block" : "none";
+            });
+        }
+    </script>
 </body>
 </html>

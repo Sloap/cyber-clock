@@ -10,6 +10,28 @@ h1 {
     color: #1a1a1a;
 }
 
+.filters {
+    margin: 16px 0 24px;
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 6px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.filter-btn.active,
+.filter-btn:hover         { background: #1a1a1a; color: white; border-color: #1a1a1a; }
+.filter-btn.high.active   { background: #cf222e; border-color: #cf222e; }
+.filter-btn.medium.active { background: #9a6700; border-color: #9a6700; }
+.filter-btn.low.active    { background: #1a7f37; border-color: #1a7f37; }
+
 h2 {
     margin-top: 32px;
     color: #444;
