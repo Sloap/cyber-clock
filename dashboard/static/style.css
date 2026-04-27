@@ -10,6 +10,13 @@ h1 {
     color: #1a1a1a;
 }
 
+h2 {
+    margin-top: 32px;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 6px;
+}
+
 .article {
     background: white;
     border-left: 5px solid #ccc;
@@ -21,3 +28,38 @@ h1 {
 .priority-high   { border-left-color: #cf222e; }
 .priority-medium { border-left-color: #9a6700; }
 .priority-low    { border-left-color: #1a7f37; }
+
+.badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: white;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.badge-high   { background: #cf222e; }
+.badge-medium { background: #9a6700; }
+.badge-low    { background: #1a7f37; }
+
+.meta {
+    font-size: 12px;
+    color: #888;
+    vertical-align: middle;
+}
+
+.article a {
+    font-weight: bold;
+    color: #0969da;
+    text-decoration: none;
+}
+
+.article a:hover {
+    text-decoration: underline;
+}
+
+.article p {
+    margin: 8px 0 0 0;
+}
