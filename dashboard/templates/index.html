@@ -6,59 +6,76 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Veille Cybersécurité</h1>
 
-    <div class="stats">
-        <div class="stat-item">
-            <span class="stat-number">{{ stats.total }}</span>
-            <span class="stat-label">articles</span>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="logo">
+                <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="14" r="12" stroke="#7dd3fc" stroke-width="2"/>
+                    <line x1="14" y1="14" x2="14" y2="6"  stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="14" y1="14" x2="20" y2="18" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="14" cy="14" r="1.5" fill="white"/>
+                </svg>
+                <span class="logo-text">CyberClock</span>
+            </div>
         </div>
-        <div class="stat-item high">
-            <span class="stat-number">{{ stats.high }}</span>
-            <span class="stat-label">HIGH</span>
-        </div>
-        <div class="stat-item medium">
-            <span class="stat-number">{{ stats.medium }}</span>
-            <span class="stat-label">MEDIUM</span>
-        </div>
-        <div class="stat-item low">
-            <span class="stat-number">{{ stats.low }}</span>
-            <span class="stat-label">LOW</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">{{ stats.sources }}</span>
-            <span class="stat-label">sources</span>
-        </div>
-    </div>
+    </header>
 
-    <div class="filters">
-        <a class="date-btn {% if not days %}active{% endif %}" href="/">Tout</a>
-        <a class="date-btn {% if days == 1 %}active{% endif %}" href="/?days=1">Aujourd'hui</a>
-        <a class="date-btn {% if days == 7 %}active{% endif %}" href="/?days=7">7 jours</a>
-        <a class="date-btn {% if days == 30 %}active{% endif %}" href="/?days=30">30 jours</a>
-    </div>
+    <div class="container">
 
-    <div class="filters">
-        <button class="filter-btn active" onclick="filter('all')">Tous</button>
-        <button class="filter-btn high"   onclick="filter('high')">HIGH</button>
-        <button class="filter-btn medium" onclick="filter('medium')">MEDIUM</button>
-        <button class="filter-btn low"    onclick="filter('low')">LOW</button>
-    </div>
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">{{ stats.total }}</span>
+                <span class="stat-label">articles</span>
+            </div>
+            <div class="stat-item high">
+                <span class="stat-number">{{ stats.high }}</span>
+                <span class="stat-label">HIGH</span>
+            </div>
+            <div class="stat-item medium">
+                <span class="stat-number">{{ stats.medium }}</span>
+                <span class="stat-label">MEDIUM</span>
+            </div>
+            <div class="stat-item low">
+                <span class="stat-number">{{ stats.low }}</span>
+                <span class="stat-label">LOW</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">{{ stats.sources }}</span>
+                <span class="stat-label">sources</span>
+            </div>
+        </div>
 
-    {% for section, section_articles in articles | groupby("section") %}
-    <div class="section">
-        <h2>{{ section }}</h2>
-        {% for article in section_articles %}
-        <div class="article priority-{{ article.ai_priority }}">
-            <span class="badge badge-{{ article.ai_priority }}">{{ article.ai_priority | upper }}</span>
-            <span class="meta">{{ article.source_label }} — {{ article.published_fr }}</span>
-            <p><a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.ai_title_fr }}</a></p>
-            <p>{{ article.ai_summary }}</p>
-            <p><em>{{ article.ai_why_it_matters }}</em></p>
+        <div class="filters">
+            <a class="date-btn {% if not days %}active{% endif %}" href="/">Tout</a>
+            <a class="date-btn {% if days == 1 %}active{% endif %}" href="/?days=1">Aujourd'hui</a>
+            <a class="date-btn {% if days == 7 %}active{% endif %}" href="/?days=7">7 jours</a>
+            <a class="date-btn {% if days == 30 %}active{% endif %}" href="/?days=30">30 jours</a>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filter('all')">Tous</button>
+            <button class="filter-btn high"   onclick="filter('high')">HIGH</button>
+            <button class="filter-btn medium" onclick="filter('medium')">MEDIUM</button>
+            <button class="filter-btn low"    onclick="filter('low')">LOW</button>
+        </div>
+
+        {% for section, section_articles in articles | groupby("section") %}
+        <div class="section">
+            <h2>{{ section }}</h2>
+            {% for article in section_articles %}
+            <div class="article priority-{{ article.ai_priority }}">
+                <span class="badge badge-{{ article.ai_priority }}">{{ article.ai_priority | upper }}</span>
+                <span class="meta">{{ article.source_label }} — {{ article.published_fr }}</span>
+                <p><a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.ai_title_fr }}</a></p>
+                <p>{{ article.ai_summary }}</p>
+                <p><em>{{ article.ai_why_it_matters }}</em></p>
+            </div>
+            {% endfor %}
         </div>
         {% endfor %}
+
     </div>
-    {% endfor %}
 
     <script>
         function filter(priority) {
