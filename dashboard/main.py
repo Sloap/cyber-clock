@@ -71,14 +71,33 @@ def get_stats(days: Optional[int]) -> dict:
 
     return stats
 
+def get_sources(days: Optional[int]) -> list[dict]:
+    conn = sqlite3.connect(DB_FILE)
+    conn.row_factory = sqlite3.Row
+
+    date_filter = "WHERE inserted_at >= datetime('now', :days || ' days')" if days else ""
+    params = {"days": f"-{days}"} if days else {}
+
+    rows = conn.execute(f"""
+        SELECT source_name, source_label, COUNT(*) as count
+        FROM articles {date_filter}
+        GROUP BY source_name
+        ORDER BY source_label
+    """, params).fetchall()
+
+    conn.close()
+    return [dict(row) for row in rows]
+
 @app.get("/")
 def index(request: Request, days: Optional[int] = None):
     articles = get_articles(days)
     for article in articles:
         article["published_fr"] = format_date_fr(article.get("published", ""))
-    stats = get_stats(days)
+    stats    = get_stats(days)
+    sources  = get_sources(days)
     return templates.TemplateResponse(request, "index.html", {
         "articles": articles,
-        "stats": stats,
-        "days": days,
+        "stats":    stats,
+        "sources":  sources,
+        "days":     days,
     })

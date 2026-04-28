@@ -53,17 +53,26 @@
                 <span class="stat-number">{{ stats.low }}</span>
                 <span class="stat-label">LOW</span>
             </div>
-            <div class="stat-item">
+            <div class="stat-item stat-sources" onclick="toggleSourcesPanel()">
                 <span class="stat-number">{{ stats.sources }}</span>
-                <span class="stat-label">sources</span>
+                <span class="stat-label">sources ▾</span>
             </div>
+        </div>
+
+        <div class="sources-panel" id="sourcesPanel">
+            <button class="source-btn active" onclick="filterSource('all', this)">Toutes les sources</button>
+            {% for source in sources %}
+            <button class="source-btn" onclick="filterSource('{{ source.source_name }}', this)">
+                {{ source.source_label }} <span class="source-count">{{ source.count }}</span>
+            </button>
+            {% endfor %}
         </div>
 
         {% for section, section_articles in articles | groupby("section") %}
         <div class="section">
             <h2>{{ section }}</h2>
             {% for article in section_articles %}
-            <div class="article priority-{{ article.ai_priority }}">
+            <div class="article priority-{{ article.ai_priority }}" data-source="{{ article.source_name }}">
                 <span class="badge badge-{{ article.ai_priority }}">{{ article.ai_priority | upper }}</span>
                 <span class="meta">{{ article.source_label }} — {{ article.published_fr }}</span>
                 <p><a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.ai_title_fr }}</a></p>
@@ -77,21 +86,47 @@
     </div>
 
     <script>
-        function filter(priority) {
-            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
-            event.target.classList.add("active");
+        let activePriority = "all";
+        let activeSource   = "all";
 
+        function applyFilters() {
             document.querySelectorAll(".article").forEach(article => {
-                const show = priority === "all" || article.classList.contains("priority-" + priority);
-                article.style.display = show ? "block" : "none";
+                const matchPriority = activePriority === "all" || article.classList.contains("priority-" + activePriority);
+                const matchSource   = activeSource   === "all" || article.dataset.source === activeSource;
+                article.style.display = matchPriority && matchSource ? "block" : "none";
             });
-
             document.querySelectorAll(".section").forEach(section => {
                 const hasVisible = [...section.querySelectorAll(".article")]
                     .some(a => a.style.display !== "none");
                 section.style.display = hasVisible ? "block" : "none";
             });
         }
+
+        function filter(priority) {
+            activePriority = priority;
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
+            applyFilters();
+        }
+
+        function filterSource(source, btn) {
+            activeSource = source;
+            document.querySelectorAll(".source-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            document.getElementById("sourcesPanel").classList.remove("open");
+            applyFilters();
+        }
+
+        function toggleSourcesPanel() {
+            document.getElementById("sourcesPanel").classList.toggle("open");
+        }
+
+        document.addEventListener("click", function(e) {
+            const panel = document.getElementById("sourcesPanel");
+            if (!panel.contains(e.target) && !e.target.closest(".stat-sources")) {
+                panel.classList.remove("open");
+            }
+        });
     </script>
 </body>
 </html>
