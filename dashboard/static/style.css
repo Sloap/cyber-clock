@@ -41,6 +41,50 @@ body {
     padding: 0 20px;
 }
 
+/* ── Carte sources cliquable ── */
+.stat-sources {
+    cursor: pointer;
+    user-select: none;
+}
+.stat-sources:hover { border-color: #0969da; }
+
+/* ── Panel sources ── */
+.sources-panel {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    min-width: 220px;
+    margin-top: -20px;
+}
+.sources-panel.open { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.source-btn {
+    padding: 5px 12px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    background: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.source-btn:hover  { background: #f0f0f0; }
+.source-btn.active { background: #0969da; color: white; border-color: #0969da; }
+
+.source-count {
+    font-weight: normal;
+    color: #888;
+    font-size: 11px;
+}
+.source-btn.active .source-count { color: #cce; }
+
 /* ── Sidebar flottante à gauche ── */
 .sidebar {
     position: absolute;
